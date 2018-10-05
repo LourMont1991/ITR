@@ -1,0 +1,38 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejercicio.mappers.BibliotecaMapper">
+	<resultMap type="com.ejercicio.entity.Biblioteca" id="BibliotecaResult">
+		<result property="id" column="ID_BIBLIOTECA" />
+		<result property="nombre" column="NOMBRE" />
+		<result property="telefono" column="TELEFONO" />
+		<result property="direccion" column="DIRECCION" />
+		
+</resultMap>
+	<insert id="insert" parameterType="com.ejercicio.entity.Biblioteca">
+	    INSERT INTO BIBLIOTECAS
+		(
+		NOMBRE,
+		TELEFONO,
+		DIRECCION
+		) VALUES (
+		#{biblioteca.nombre},
+		#{biblioteca.telefono},
+		#{biblioteca.direccion}
+		)
+	</insert>
+	<delete id="deleteBiblioteca">
+	DELETE FROM BIBLIOTECAS WHERE ID_BIBLIOTECA = #{biblioteca.id}
+	</delete>
+	<select id="selectAll" resultMap="BibliotecaResult">	
+		SELECT * FROM BIBLIOTECAS
+	</select>
+	<update id="update" >	
+		UPDATE BIBLIOTECAS SET
+		    NOMBRE = #{biblioteca.nombre},
+		    TELEFONO = #{biblioteca.telefono},	 
+		     DIRECCION = #{biblioteca.direccion}
+		    WHERE ID_BIBLIOTECA = #{biblioteca.id}  
+	</update>
+
+</mapper>

@@ -1,0 +1,34 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejercicio.mappers.LibroMapper">
+	<resultMap type="com.ejercicio.entity.Libro" id="LibroResult">
+		<result property="id" column="ID_LIBRO" />
+		<result property="nombre" column="NOMBRE" />
+		<result property="genero.id" column="ID_GENERO" />
+</resultMap>
+	<insert id="insert" parameterType="com.ejercicio.entity.Libro">
+	    INSERT INTO LIBROS
+		(
+		NOMBRE,
+		ID_GENERO
+		) VALUES (
+		#{libro.nombre},
+		#{libro.genero.id}
+		
+		)
+	</insert>
+	<delete id="deleteLibro">
+	DELETE FROM LIBROS WHERE ID_LIBRO = #{libro.id}
+	</delete>
+	<select id="selectAll" resultMap="LibroResult">	
+		SELECT * FROM LIBROS
+	</select>
+	<update id="update" >	
+		UPDATE LIBROS SET
+		    NOMBRE = #{libro.nombre},
+		    ID_GENERO = #{libro.genero.id}	 
+		    WHERE ID_LIBRO = #{libro.id}  
+	</update>
+
+</mapper>

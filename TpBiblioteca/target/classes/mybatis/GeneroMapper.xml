@@ -1,0 +1,33 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ejercicio.mappers.GeneroMapper">
+	<resultMap type="com.ejercicio.entity.Genero"
+		id="GeneroResult">
+		<result property="id" column="ID_GENERO" />
+		<result property="nombre" column="NOMBRE" />
+	</resultMap>
+	<insert id="insert" parameterType="com.ejercicio.entity.Genero">
+		INSERT INTO GENEROS
+		(
+		NOMBRE
+		) VALUES (
+		#{genero.nombre}
+
+		)
+	</insert>
+	<delete id="delete">
+		DELETE FROM GENEROs WHERE ID_GENERO=#{genero.id}
+	</delete>
+	<update id="update">
+		UPDATE GENEROS SET
+		NOMBRE=#{genero.nombre}
+		WHERE ID_GENERO=#{genero.id}
+	</update>
+	
+	<select id="selectAll" resultMap="GeneroResult">
+	
+	SELECT * FROM GENEROS
+	
+	</select>
+</mapper>
